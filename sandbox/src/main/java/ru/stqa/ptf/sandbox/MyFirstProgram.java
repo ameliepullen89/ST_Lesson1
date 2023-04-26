@@ -1,3 +1,5 @@
+package ru.stqa.ptf.sandbox;
+
 public class MyFirstProgram {
 
   public static void main(String[] args) {
@@ -24,10 +26,9 @@ public class MyFirstProgram {
   }
 
 
-public static double areap(double a, double b){
+  public static double areap(double a, double b) {
     return a * b;
-
-}
+  }
 
 
 }
