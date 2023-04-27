@@ -5,8 +5,9 @@ public class DistanceCalculation {
 public static void main (String[] args){
 
 
-  Point p = new Point(6, 7, 4, 11);
-  System.out.println("Расстояние между точками c координатами " + p.p1x + "," + p.p1y + " и " + p.p2x + "," + p.p2y + " равно "+ p.distanse());
+  Point p1 = new Point(6, 7);
+  Point p2 = new Point(4, 11);
+  System.out.println("Расстояние между точками равно "+ p1.distanse(p2)); // было максимально неочевидно, что можно использовать вызов метода таким образом
 }
 
 }

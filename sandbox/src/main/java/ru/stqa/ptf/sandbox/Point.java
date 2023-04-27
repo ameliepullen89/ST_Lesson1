@@ -1,20 +1,16 @@
 package ru.stqa.ptf.sandbox;
 
 public class Point {
-  public double p1x;
-  public double p1y;
-  public double p2x;
-  public double p2y;
+  public double x;
+  public double y;
 
 
-  public Point(double p1x,double p1y, double p2x, double p2y){
-    this.p1x = p1x;
-    this.p1y = p1y;
-    this.p2x = p2x;
-    this.p2y = p2y;
+  public Point(double x,double y){
+    this.x = x;
+    this.y = y;
   }
 
-  public double distanse() {
-    return Math.sqrt(((this.p2x-this.p1x) * (this.p2x-this.p1x))+((this.p2y-this.p1y) * (this.p2y-this.p1y)));
+  public double distanse(Point p2){ // было не совсем понятно что обращаться надо к Point, а не просто к p2
+    return Math.sqrt(((p2.x-this.x) * (p2.x- this.x))+((p2.y- this.y) * (p2.y- this.y)));
   }
 }
