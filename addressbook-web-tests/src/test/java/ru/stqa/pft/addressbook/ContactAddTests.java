@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook;
 
 import java.time.Duration;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -38,7 +39,7 @@ public class ContactAddTests {
   @Test
   public void testContactAdd() throws Exception {
     gotoAddContactPage();
-    fillContactForm("Sherlock2", "Garry2", "Holmes2", "Shelly2", "Adventure agency LLC", "221b, Baker Street, London, NW1 6XE", "5510089", "+300798983988", "2245678", "123", "sherlock_holmes@bk.ru", "shelly.holmes@rambler.ru", "shelly_sweet_pie@icloud.com", "www.ya.ru", "4", "March", "1871", "3", "November", "1805", "Friends", "10-11 Northumberland Street, Westminster, London WC2N 5DB", "4578292", "Do not call after 11 pm");
+    fillContactForm(new ContactData("Sherlock2", "Garry2", "Holmes2", "Shelly2", "Adventure agency LLC", "221b, Baker Street, London, NW1 6XE", "5510089", "+300798983988", "2245678", "123", "sherlock_holmes@bk.ru", "shelly.holmes@rambler.ru", "shelly_sweet_pie@icloud.com", "www.ya.ru", "4", "March", "1871", "3", "November", "1805", "Friends", "10-11 Northumberland Street, Westminster, London WC2N 5DB", "4578292", "Do not call after 11 pm"));
     submitContactCreation();
     logout();
   }
@@ -51,78 +52,73 @@ public class ContactAddTests {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  private void fillContactForm(String firstName, String secondName, String lastName, String nickName, String job,
-                               String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone,
-                               String mainEmail, String spareEmail1, String spareEmail2, String websiteContact,
-                               String dayBirth, String monthBirth, String yearBirth, String dayAnniversary,
-                               String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress,
-                               String secondaryAddressPhone, String notes) {
+  private void fillContactForm(ContactData contactData) {
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(firstName);
+    wd.findElement(By.name("firstname")).sendKeys(contactData.firstName());
     wd.findElement(By.name("middlename")).click();
     wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(secondName);
+    wd.findElement(By.name("middlename")).sendKeys(contactData.secondName());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(lastName);
+    wd.findElement(By.name("lastname")).sendKeys(contactData.lastName());
     wd.findElement(By.name("nickname")).click();
     wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys(nickName);
+    wd.findElement(By.name("nickname")).sendKeys(contactData.nickName());
     wd.findElement(By.name("company")).click();
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(job);
+    wd.findElement(By.name("company")).sendKeys(contactData.job());
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(homeAddress);
+    wd.findElement(By.name("address")).sendKeys(contactData.homeAddress());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(homePhone);
+    wd.findElement(By.name("home")).sendKeys(contactData.homePhone());
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(mobilePhone);
+    wd.findElement(By.name("mobile")).sendKeys(contactData.mobilePhone());
     wd.findElement(By.name("work")).click();
     wd.findElement(By.name("work")).clear();
-    wd.findElement(By.name("work")).sendKeys(workPhone);
+    wd.findElement(By.name("work")).sendKeys(contactData.workPhone());
     wd.findElement(By.name("fax")).click();
     wd.findElement(By.name("fax")).clear();
-    wd.findElement(By.name("fax")).sendKeys(faxPhone);
+    wd.findElement(By.name("fax")).sendKeys(contactData.faxPhone());
     wd.findElement(By.name("email")).click();
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(mainEmail);
+    wd.findElement(By.name("email")).sendKeys(contactData.mainEmail());
     wd.findElement(By.name("email2")).click();
     wd.findElement(By.name("email2")).clear();
-    wd.findElement(By.name("email2")).sendKeys(spareEmail1);
+    wd.findElement(By.name("email2")).sendKeys(contactData.spareEmail1());
     wd.findElement(By.name("email3")).click();
     wd.findElement(By.name("email3")).clear();
-    wd.findElement(By.name("email3")).sendKeys(spareEmail2);
+    wd.findElement(By.name("email3")).sendKeys(contactData.spareEmail2());
     wd.findElement(By.name("homepage")).click();
     wd.findElement(By.name("homepage")).clear();
-    wd.findElement(By.name("homepage")).sendKeys(websiteContact);
+    wd.findElement(By.name("homepage")).sendKeys(contactData.websiteContact());
     wd.findElement(By.name("bday")).click();
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(dayBirth);
+    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contactData.dayBirth());
     wd.findElement(By.name("bmonth")).click();
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(monthBirth);
+    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.monthBirth());
     wd.findElement(By.name("byear")).click();
     wd.findElement(By.name("byear")).clear();
-    wd.findElement(By.name("byear")).sendKeys(yearBirth);
+    wd.findElement(By.name("byear")).sendKeys(contactData.yearBirth());
     wd.findElement(By.name("aday")).click();
-    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(dayAnniversary);
+    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(contactData.dayAnniversary());
     wd.findElement(By.name("amonth")).click();
-    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(monthAnniversary);
+    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contactData.monthAnniversary());
     wd.findElement(By.name("ayear")).click();
     wd.findElement(By.name("ayear")).clear();
-    wd.findElement(By.name("ayear")).sendKeys(yearAnniversary);
+    wd.findElement(By.name("ayear")).sendKeys(contactData.yearAnniversary());
     wd.findElement(By.name("new_group")).click();
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(nameGroup);
+    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.nameGroup());
     wd.findElement(By.name("address2")).click();
     wd.findElement(By.name("address2")).clear();
-    wd.findElement(By.name("address2")).sendKeys(secondaryAddress);
+    wd.findElement(By.name("address2")).sendKeys(contactData.secondaryAddress());
     wd.findElement(By.name("phone2")).click();
     wd.findElement(By.name("phone2")).clear();
-    wd.findElement(By.name("phone2")).sendKeys(secondaryAddressPhone);
+    wd.findElement(By.name("phone2")).sendKeys(contactData.secondaryAddressPhone());
     wd.findElement(By.name("notes")).click();
     wd.findElement(By.name("notes")).clear();
-    wd.findElement(By.name("notes")).sendKeys(notes);
+    wd.findElement(By.name("notes")).sendKeys(contactData.notes());
   }
 
   private void gotoAddContactPage() {
