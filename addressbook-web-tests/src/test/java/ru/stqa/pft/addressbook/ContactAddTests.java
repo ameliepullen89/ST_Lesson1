@@ -13,8 +13,6 @@ import org.testng.annotations.Test;
 public class ContactAddTests {
   private WebDriver wd;
   private JavascriptExecutor js;
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
 
 
   @BeforeMethod(alwaysRun = true)
@@ -150,19 +148,5 @@ public class ContactAddTests {
     }
   }
 
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = wd.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
 }
 
