@@ -155,4 +155,12 @@ public class TestBase {
     wd.findElement(By.linkText("add new")).click();
     wd.get("http://localhost/addressbook/edit.php");
   }
+
+  protected void deleteSelectedGroups() {
+    wd.findElement(By.xpath("//div[@id='content']/form/input[5]")).click();
+  }
+
+  protected void selectGroup() {
+    wd.findElement(By.xpath("//div[@id='content']/form/span[5]/input")).click();
+  }
 }
