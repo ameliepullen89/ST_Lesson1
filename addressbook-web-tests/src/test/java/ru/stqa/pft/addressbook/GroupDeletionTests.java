@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook;
 
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
