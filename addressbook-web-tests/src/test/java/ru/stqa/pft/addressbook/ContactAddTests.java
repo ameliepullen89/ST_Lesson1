@@ -12,14 +12,12 @@ import org.testng.annotations.Test;
 
 public class ContactAddTests {
   private WebDriver wd;
-  private JavascriptExecutor js;
 
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-    js = (JavascriptExecutor) wd;
     wd.get("http://localhost/addressbook/index.php");
     login("admin", "secret");
   }

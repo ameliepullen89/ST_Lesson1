@@ -8,13 +8,11 @@ import java.time.Duration;
 
 public class GroupDeletionTests {
   private WebDriver wd;
-  private JavascriptExecutor js;
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-    js = (JavascriptExecutor) wd;
   }
 
   @Test

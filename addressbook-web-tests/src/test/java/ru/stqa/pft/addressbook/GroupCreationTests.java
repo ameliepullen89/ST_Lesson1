@@ -9,15 +9,13 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 
-public class GroupCreationTests {
+public class GroupCreationTests extends TestBase{
   private WebDriver wd;
-  private JavascriptExecutor js;
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-    js = (JavascriptExecutor) wd;
     wd.get("http://localhost/addressbook/index.php");
     login("admin", "secret");
   }
@@ -81,14 +79,6 @@ public class GroupCreationTests {
     wd.findElement(By.linkText("Logout")).click();
   }
 
-  private boolean isElementPresent(By by) {
-    try {
-      wd.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
 
   private boolean isAlertPresent() {
     try {
