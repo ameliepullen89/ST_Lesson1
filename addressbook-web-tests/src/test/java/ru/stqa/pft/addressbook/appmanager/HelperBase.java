@@ -25,4 +25,6 @@ public class HelperBase {
     wd.findElement(locator).click();
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
+
+
 }
