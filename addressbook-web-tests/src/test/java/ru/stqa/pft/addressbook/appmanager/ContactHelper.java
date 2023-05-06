@@ -37,7 +37,7 @@ public class ContactHelper extends HelperBase {
     type2(By.name("aday"), contactData.getDayAnniversary());
     type2(By.name("amonth"), contactData.getMonthAnniversary());
     type(By.name("ayear"), contactData.getYearAnniversary());
-    type2(By.name("new_group"), contactData.getNameGroup());
+    if (contactData.getNameGroup()!= null) { type2(By.name("new_group"), contactData.getNameGroup());}
     type(By.name("address2"), contactData.getSecondaryAddress());
     type(By.name("phone2"), contactData.getSecondaryAddressPhone());
     type(By.name("notes"), contactData.getNotes());
@@ -53,5 +53,13 @@ public class ContactHelper extends HelperBase {
   }
  public void closeDeleteContactAlert(){
     wd.switchTo().alert().accept();
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
   }
 }
