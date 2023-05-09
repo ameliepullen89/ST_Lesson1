@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.concurrent.TimeUnit;
+
 public class GroupHelper extends HelperBase  {
 
 
@@ -11,7 +13,8 @@ public class GroupHelper extends HelperBase  {
     super(wd);
   }
 
-  public void returnToGroupPage() {
+  public void returnToGroupPage() throws InterruptedException {
+    TimeUnit.SECONDS.sleep(1);
     click(By.linkText("group page"));
   }
 
@@ -19,13 +22,15 @@ public class GroupHelper extends HelperBase  {
     click(By.name("submit"));
   }
 
-  public void fillGroupForm(GroupData groupData) {
+  public void fillGroupForm(GroupData groupData) throws InterruptedException {
+    TimeUnit.SECONDS.sleep(1);
     type(By.name("group_name"), groupData.getName());
     type(By.name("group_header"), groupData.getHeader());
     type(By.name("group_footer"), groupData.getFooter());
   }
 
-  public void initGroupCreation() {
+  public void initGroupCreation() throws InterruptedException {
+    TimeUnit.SECONDS.sleep(1);
     click(By.name("new"));
   }
 
