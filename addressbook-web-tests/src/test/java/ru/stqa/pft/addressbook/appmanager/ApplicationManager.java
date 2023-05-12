@@ -4,11 +4,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.safari.SafariTechPreviewDriverService;
-
 import java.time.Duration;
 
 public class ApplicationManager {
@@ -27,9 +24,9 @@ public class ApplicationManager {
   }
 
   public void init() {
-    if (browser == Browser.CHROME) { wd = new ChromeDriver();}
-      else if (browser == Browser.FIREFOX) { wd = new FirefoxDriver();}
-      else if (browser == Browser.SAFARI) { wd = new SafariDriver();};
+    if (browser.equals(Browser.CHROME)) { wd = new ChromeDriver();}
+      else if (browser.equals(Browser.FIREFOX)) { wd = new FirefoxDriver();}
+      else if (browser.equals(Browser.SAFARI)) { wd = new SafariDriver();};
     wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     wd.get("http://localhost/addressbook/index.php");
     groupHelper = new GroupHelper(wd);
