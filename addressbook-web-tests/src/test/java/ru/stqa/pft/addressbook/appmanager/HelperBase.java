@@ -28,13 +28,19 @@ public class HelperBase {
   }
 
   protected void type2(By locator, String text) {
-    wd.findElement(locator).click();
-    new Select(wd.findElement(locator)).selectByVisibleText(text);
+    if (text != null) {
+      String existingText = wd.findElement(locator).getAttribute("value");
+      if (!text.equals(existingText)) {
+        wd.findElement(locator).click();
+        new Select(wd.findElement(locator)).selectByVisibleText(text);
+      }
+    }
   }
 
   private boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
+
       return true;
     } catch (NoAlertPresentException e) {
       return false;
