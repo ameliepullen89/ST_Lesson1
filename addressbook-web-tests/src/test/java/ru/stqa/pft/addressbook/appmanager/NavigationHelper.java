@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class NavigationHelper extends HelperBase{
+public class NavigationHelper extends HelperBase {
 
 
   public NavigationHelper(WebDriver wd) {
@@ -13,9 +13,13 @@ public class NavigationHelper extends HelperBase{
   }
 
   public void gotoGroupPage() throws InterruptedException {
+    if (isElementPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            && isElementPresent(By.name("new"))) {
+      return;
+    }
     TimeUnit.SECONDS.sleep(1);
     click(By.linkText("groups"));
-
   }
 
   public void gotoAddContactPage() {
@@ -23,6 +27,9 @@ public class NavigationHelper extends HelperBase{
   }
 
   public void gotoHomePage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
     click(By.linkText("home"));
   }
 
