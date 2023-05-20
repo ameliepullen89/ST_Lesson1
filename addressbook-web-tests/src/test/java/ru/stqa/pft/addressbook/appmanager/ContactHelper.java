@@ -17,16 +17,16 @@ public class ContactHelper extends HelperBase {
 
 
   public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"),contactData.getFirstName());
-    type(By.name("middlename"),contactData.getSecondName() );
-    type(By.name("lastname"),contactData.getLastName() );
-    type(By.name("nickname"),contactData.getNickName() );
-    type(By.name("company"),contactData.getJob());
+    type(By.name("firstname"), contactData.getFirstName());
+    type(By.name("middlename"), contactData.getSecondName());
+    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("nickname"), contactData.getNickName());
+    type(By.name("company"), contactData.getJob());
     type(By.name("address"), contactData.getHomeAddress());
-    type(By.name("home"),contactData.getHomePhone());
-    type(By.name("mobile"),contactData.getMobilePhone() );
-    type(By.name("work"),contactData.getWorkPhone() );
-    type(By.name("fax"),contactData.getFaxPhone() );
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("fax"), contactData.getFaxPhone());
     type(By.name("email"), contactData.getMainEmail());
     type(By.name("email2"), contactData.getSpareEmail1());
     type(By.name("email3"), contactData.getSpareEmail2());
@@ -37,7 +37,8 @@ public class ContactHelper extends HelperBase {
     type2(By.name("aday"), contactData.getDayAnniversary());
     type2(By.name("amonth"), contactData.getMonthAnniversary());
     type(By.name("ayear"), contactData.getYearAnniversary());
-    type2(By.name("new_group"), contactData.getNameGroup());
+    if (isElementPresent(By.name("new_group"))) {
+      type2(By.name("new_group"), contactData.getNameGroup());};
     type(By.name("address2"), contactData.getSecondaryAddress());
     type(By.name("phone2"), contactData.getSecondaryAddressPhone());
     type(By.name("notes"), contactData.getNotes());
@@ -51,7 +52,8 @@ public class ContactHelper extends HelperBase {
   public void deleteSelectedContact() {
     click(By.xpath("//input[@value='Delete']"));
   }
- public void closeDeleteContactAlert(){
+
+  public void closeDeleteContactAlert() {
     wd.switchTo().alert().accept();
   }
 
