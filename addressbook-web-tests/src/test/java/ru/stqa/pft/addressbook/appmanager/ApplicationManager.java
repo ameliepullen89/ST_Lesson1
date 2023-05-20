@@ -27,7 +27,7 @@ public class ApplicationManager {
     if (browser.equals(Browser.CHROME)) { wd = new ChromeDriver();}
       else if (browser.equals(Browser.FIREFOX)) { wd = new FirefoxDriver();}
       else if (browser.equals(Browser.SAFARI)) { wd = new SafariDriver();};
-    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     wd.get("http://localhost/addressbook/index.php");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
