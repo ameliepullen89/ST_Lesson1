@@ -46,7 +46,8 @@ public class ContactHelper extends HelperBase {
       type2(By.name("new_group"), contactData.getNameGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
-    };
+    }
+    ;
     type(By.name("address2"), contactData.getSecondaryAddress());
     type(By.name("phone2"), contactData.getSecondaryAddressPhone());
     type(By.name("notes"), contactData.getNotes());
@@ -90,15 +91,14 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr"));
-    for (WebElement element:elements) {
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name = 'entry']"));
+    for (WebElement element : elements) {
       List<WebElement> elementstd = element.findElements(By.cssSelector("td"));
-      if (elementstd.size() != 0) {
-        String firstname = elementstd.get(2).getText();
-        String lastname = elementstd.get(1).getText();
-        ContactData contact = new ContactData(firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-        contacts.add(contact);
-      }
+      String firstname = elementstd.get(2).getText();
+      String lastname = elementstd.get(1).getText();
+      ContactData contact = new ContactData(firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+      contacts.add(contact);
+
     }
     return contacts;
   }
