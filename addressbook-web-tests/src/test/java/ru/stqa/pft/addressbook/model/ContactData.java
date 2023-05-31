@@ -26,6 +26,32 @@ public class ContactData {
   private final String secondaryAddressPhone;
   private final String notes;
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = firstName != null ? firstName.hashCode() : 0;
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
+  }
+
   public ContactData(String firstName, String secondName, String lastName, String nickName, String job, String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone, String mainEmail, String spareEmail1, String spareEmail2, String websiteContact, String dayBirth, String monthBirth, String yearBirth, String dayAnniversary, String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress, String secondaryAddressPhone, String notes) {
     this.firstName = firstName;
     this.secondName = secondName;
