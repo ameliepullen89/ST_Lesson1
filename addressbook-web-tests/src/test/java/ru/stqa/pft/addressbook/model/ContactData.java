@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private final String id;
+  private int id;
   private final String firstName;
   private final String secondName;
   private final String lastName;
@@ -9,6 +9,11 @@ public class ContactData {
   private final String job;
   private final String homeAddress;
   private final String homePhone;
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
   private final String mobilePhone;
   private final String workPhone;
   private final String faxPhone;
@@ -29,7 +34,7 @@ public class ContactData {
 
 
 
-  public ContactData(String id,String firstName, String secondName, String lastName, String nickName, String job, String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone, String mainEmail, String spareEmail1, String spareEmail2, String websiteContact, String dayBirth, String monthBirth, String yearBirth, String dayAnniversary, String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress, String secondaryAddressPhone, String notes) {
+  public ContactData(int id,String firstName, String secondName, String lastName, String nickName, String job, String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone, String mainEmail, String spareEmail1, String spareEmail2, String websiteContact, String dayBirth, String monthBirth, String yearBirth, String dayAnniversary, String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress, String secondaryAddressPhone, String notes) {
     this.id = id;
     this.firstName = firstName;
     this.secondName = secondName;
@@ -58,7 +63,7 @@ public class ContactData {
   }
 
   public ContactData(String firstName, String secondName, String lastName, String nickName, String job, String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone, String mainEmail, String spareEmail1, String spareEmail2, String websiteContact, String dayBirth, String monthBirth, String yearBirth, String dayAnniversary, String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress, String secondaryAddressPhone, String notes) {
-    this.id = null;
+    this.id = 0;
     this.firstName = firstName;
     this.secondName = secondName;
     this.lastName = lastName;
@@ -85,42 +90,16 @@ public class ContactData {
     this.notes = notes;
   }
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            '}';
-  }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
 
-    ContactData that = (ContactData) o;
-
-    if (id != null ? !id.equals(that.id) : that.id != null) return false;
-    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    return result;
-  }
-
-  public String getId() {
+  public int getId() {
     return id;
   }
 
   public String getFirstName() {
     return firstName;
   }
+
 
   public String getSecondName() {
     return secondName;
@@ -212,6 +191,27 @@ public class ContactData {
 
   public String getNotes() {
     return notes;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    return result;
   }
 
 }
