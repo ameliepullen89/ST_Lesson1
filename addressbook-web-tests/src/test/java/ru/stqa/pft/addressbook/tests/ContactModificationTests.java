@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase{
@@ -18,12 +19,18 @@ public class ContactModificationTests extends TestBase{
       app.getNavigationHelper().gotoHomePage();
     }
     app.getContactHelper().initContactModification(before.size() -1);
-    app.getContactHelper().fillContactForm(new ContactData("Who", "is", "Alice", "", "", "221b, Baker Street, London, NW1 6XE", "5510089", "", "", "", "", "", "", "", "-", "-", "", "-", "-", "", null, "10-11 Northumberland Street, Westminster, London WC2N 5DB", "", ""), false);
+    ContactData contact = new ContactData(before.get(before.size() -1).getId(),"Who", "is", "Alice", "", "", "221b, Baker Street, London, NW1 6XE", "5510089", "", "", "", "", "", "", "", "-", "-", "", "-", "-", "", null, "10-11 Northumberland Street, Westminster, London WC2N 5DB", "", "");
+    app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().gotoHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
     app.getSessionHelper().logout();
+
+    before.remove(before.size() -1);
+    before.add(contact);
+    Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
+
   }
 
 
