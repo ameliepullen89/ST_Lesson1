@@ -62,8 +62,10 @@ public class ContactData {
     this.notes = notes;
   }
 
+
+
   public ContactData(String firstName, String secondName, String lastName, String nickName, String job, String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone, String mainEmail, String spareEmail1, String spareEmail2, String websiteContact, String dayBirth, String monthBirth, String yearBirth, String dayAnniversary, String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress, String secondaryAddressPhone, String notes) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.firstName = firstName;
     this.secondName = secondName;
     this.lastName = lastName;
@@ -193,7 +195,6 @@ public class ContactData {
     return notes;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -201,17 +202,16 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    if (id != that.id) return false;
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
     return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    int result = firstName != null ? firstName.hashCode() : 0;
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     return result;
   }
+
 
 }
