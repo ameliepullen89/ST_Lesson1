@@ -6,11 +6,10 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 
-public class ContactAddTests extends TestBase {
+public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactAdd() throws Exception {
