@@ -53,18 +53,24 @@ public class GroupHelper extends HelperBase  {
     click(By.name("update"));
   }
 
-  public void createGroup(GroupData group) throws InterruptedException {
+  public void create(GroupData group) throws InterruptedException {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
     returnToGroupPage();
   }
 
-  public void modifyGroup(int index, GroupData group) throws InterruptedException {
+  public void modify(int index, GroupData group) throws InterruptedException {
     selectGroup(index);
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    returnToGroupPage();
+  }
+
+  public void delete(int index) throws InterruptedException {
+    selectGroup(index);
+    deleteSelectedGroups();
     returnToGroupPage();
   }
 
@@ -76,7 +82,7 @@ public class GroupHelper extends HelperBase  {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element:elements) {
