@@ -17,7 +17,7 @@ public class ContactCreationTests extends TestBase {
   public void testContactAdd() throws Exception {
     List<ContactData> before = app.contact().list();
     app.goTo().createContactPage();
-    ContactData contact = new ContactData("Who", "is", "Alice", "", "", "221b, Baker Street, London, NW1 6XE", "5510089", "", "", "", "", "", "", "", "-", "-", "", "-", "-", "", null, "10-11 Northumberland Street, Westminster, London WC2N 5DB", "", "");
+    ContactData contact = new ContactData().withFirstName("Who").withLastName("isAlice?").withHomeAddress("221b, Baker Street, London, NW1 6XE").withHomePhone("5510089").withSecondaryAddress("10-11 Northumberland Street, Westminster, London WC2N 5DB");
     app.contact().create(contact);
     app.goTo().homePage();
     List<ContactData> after = app.contact().list();
