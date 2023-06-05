@@ -14,7 +14,7 @@ public class GroupModificationTests extends TestBase {
   public void ensurePreconditions() throws InterruptedException {
     app.goTo().groupPage();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("test1", "test2", "test3"));
+      app.group().create(new GroupData().withName("test1").witHeader("test2").witFooter("test3"));
     }
   }
 
@@ -23,7 +23,7 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() throws InterruptedException {
     List<GroupData> before = app.group().list();
     int index = before.size() - 1;
-    GroupData group = new GroupData(before.get(index).getId(), "test4", "test2", "test3");
+    GroupData group = new GroupData().witId(before.get(index).getId()).withName("test4").witHeader("test2").witHeader("test3");
     app.group().modify(index, group);
     List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size());
