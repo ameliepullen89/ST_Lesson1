@@ -9,11 +9,6 @@ public class ContactData {
   private final String job;
   private final String homeAddress;
   private final String homePhone;
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
   private final String mobilePhone;
   private final String workPhone;
   private final String faxPhone;
@@ -31,36 +26,6 @@ public class ContactData {
   private final String secondaryAddress;
   private final String secondaryAddressPhone;
   private final String notes;
-
-
-
-  public ContactData(int id,String firstName, String secondName, String lastName, String nickName, String job, String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone, String mainEmail, String spareEmail1, String spareEmail2, String websiteContact, String dayBirth, String monthBirth, String yearBirth, String dayAnniversary, String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress, String secondaryAddressPhone, String notes) {
-    this.id = id;
-    this.firstName = firstName;
-    this.secondName = secondName;
-    this.lastName = lastName;
-    this.nickName = nickName;
-    this.job = job;
-    this.homeAddress = homeAddress;
-    this.homePhone = homePhone;
-    this.mobilePhone = mobilePhone;
-    this.workPhone = workPhone;
-    this.faxPhone = faxPhone;
-    this.mainEmail = mainEmail;
-    this.spareEmail1 = spareEmail1;
-    this.spareEmail2 = spareEmail2;
-    this.websiteContact = websiteContact;
-    this.dayBirth = dayBirth;
-    this.monthBirth = monthBirth;
-    this.yearBirth = yearBirth;
-    this.dayAnniversary = dayAnniversary;
-    this.monthAnniversary = monthAnniversary;
-    this.yearAnniversary = yearAnniversary;
-    this.nameGroup = nameGroup;
-    this.secondaryAddress = secondaryAddress;
-    this.secondaryAddressPhone = secondaryAddressPhone;
-    this.notes = notes;
-  }
 
 
 
@@ -94,6 +59,38 @@ public class ContactData {
 
 
 
+  public ContactData(int id, String firstName, String secondName, String lastName, String nickName, String job, String homeAddress, String homePhone, String mobilePhone, String workPhone, String faxPhone, String mainEmail, String spareEmail1, String spareEmail2, String websiteContact, String dayBirth, String monthBirth, String yearBirth, String dayAnniversary, String monthAnniversary, String yearAnniversary, String nameGroup, String secondaryAddress, String secondaryAddressPhone, String notes) {
+    this.id = id;
+    this.firstName = firstName;
+    this.secondName = secondName;
+    this.lastName = lastName;
+    this.nickName = nickName;
+    this.job = job;
+    this.homeAddress = homeAddress;
+    this.homePhone = homePhone;
+    this.mobilePhone = mobilePhone;
+    this.workPhone = workPhone;
+    this.faxPhone = faxPhone;
+    this.mainEmail = mainEmail;
+    this.spareEmail1 = spareEmail1;
+    this.spareEmail2 = spareEmail2;
+    this.websiteContact = websiteContact;
+    this.dayBirth = dayBirth;
+    this.monthBirth = monthBirth;
+    this.yearBirth = yearBirth;
+    this.dayAnniversary = dayAnniversary;
+    this.monthAnniversary = monthAnniversary;
+    this.yearAnniversary = yearAnniversary;
+    this.nameGroup = nameGroup;
+    this.secondaryAddress = secondaryAddress;
+    this.secondaryAddressPhone = secondaryAddressPhone;
+    this.notes = notes;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
   public int getId() {
     return id;
   }
@@ -102,6 +99,14 @@ public class ContactData {
     return firstName;
   }
 
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
+  }
 
   public String getSecondName() {
     return secondName;
@@ -194,6 +199,7 @@ public class ContactData {
   public String getNotes() {
     return notes;
   }
+
 
   @Override
   public boolean equals(Object o) {

@@ -4,11 +4,6 @@ public class GroupData {
   private int id;
   private final String name;
   private final String header;
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
   private final String footer;
 
 
@@ -24,6 +19,10 @@ public class GroupData {
     this.name = name;
     this.header = header;
     this.footer = footer;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getId() {
@@ -57,15 +56,12 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
-    if (id != groupData.id) return false;
     return name != null ? name.equals(groupData.name) : groupData.name == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    return result;
+    return name != null ? name.hashCode() : 0;
   }
 
 }
