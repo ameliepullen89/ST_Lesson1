@@ -2,31 +2,37 @@ package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
   private int id = Integer.MAX_VALUE;
-  private  String firstName;
-  private  String secondName;
-  private  String lastName;
-  private  String nickName;
-  private  String job;
-  private  String homeAddress;
-  private  String homePhone;
-  private  String mobilePhone;
-  private  String workPhone;
-  private  String faxPhone;
-  private  String mainEmail;
-  private  String spareEmail1;
-  private  String spareEmail2;
-  private  String websiteContact;
-  private  String dayBirth;
-  private  String monthBirth;
-  private  String yearBirth;
-  private  String dayAnniversary;
-  private  String monthAnniversary;
-  private  String yearAnniversary;
-  private  String nameGroup;
-  private  String secondaryAddress;
-  private  String secondaryAddressPhone;
-  private  String notes;
+  private String firstName;
+  private String secondName;
+  private String lastName;
+  private String nickName;
+  private String job;
+  private String homeAddress;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
+  private String faxPhone;
+  private String mainEmail;
+  private String spareEmail1;
+  private String spareEmail2;
+  private String websiteContact;
+  private String dayBirth;
+  private String monthBirth;
+  private String yearBirth;
+  private String dayAnniversary;
+  private String monthAnniversary;
+  private String yearAnniversary;
+  private String nameGroup;
+  private String secondaryAddress;
+  private String secondaryAddressPhone;
+  private String notes;
+  private String allPhones;
 
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
 
   public ContactData withId(int id) {
@@ -171,6 +177,10 @@ public class ContactData {
             '}';
   }
 
+  public String getAllPhones() {
+    return allPhones;
+  }
+
   public String getSecondName() {
     return secondName;
   }
@@ -250,7 +260,6 @@ public class ContactData {
   public String getNameGroup() {
     return nameGroup;
   }
-
 
 
   public String getSecondaryAddress() {
