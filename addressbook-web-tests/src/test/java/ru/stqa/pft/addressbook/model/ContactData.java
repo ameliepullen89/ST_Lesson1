@@ -27,7 +27,14 @@ public class ContactData {
   private String secondaryAddressPhone;
   private String notes;
   private String allPhones;
+  public String allEmails;
 
+
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -177,6 +184,10 @@ public class ContactData {
             '}';
   }
 
+
+  public String getAllEmails() {
+    return allEmails;
+  }
   public String getAllPhones() {
     return allPhones;
   }
@@ -294,6 +305,7 @@ public class ContactData {
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     return result;
   }
+
 
 
 }
