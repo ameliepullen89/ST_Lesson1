@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Walter 0",
+    "lastName": "White 0",
+    "homeAddress": "Broadway 12 0",
+    "homePhone": "777 33",
+    "mobilePhone": "+79117896756",
+    "workPhone": "112",
+    "mainEmail": "mmm@bk.ru"
+  },
+  {
+    "firstName": "Walter 1",
+    "lastName": "White 1",
+    "homeAddress": "Broadway 12 1",
+    "homePhone": "777 33",
+    "mobilePhone": "+79117896756",
+    "workPhone": "112",
+    "mainEmail": "mmm@bk.ru"
+  },
+  {
+    "firstName": "Walter 2",
+    "lastName": "White 2",
+    "homeAddress": "Broadway 12 2",
+    "homePhone": "777 33",
+    "mobilePhone": "+79117896756",
+    "workPhone": "112",
+    "mainEmail": "mmm@bk.ru"
+  },
+  {
+    "firstName": "Walter 3",
+    "lastName": "White 3",
+    "homeAddress": "Broadway 12 3",
+    "homePhone": "777 33",
+    "mobilePhone": "+79117896756",
+    "workPhone": "112",
+    "mainEmail": "mmm@bk.ru"
+  }
+]
