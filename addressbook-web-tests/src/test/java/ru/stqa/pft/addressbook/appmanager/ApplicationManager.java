@@ -16,18 +16,18 @@ public class ApplicationManager {
   private GroupHelper groupHelper ;
   private SessionHelper sessionHelper;
   private ContactHelper contactHelper;
-  private Browser browser;
+  private String browser;
 
-  public ApplicationManager(Browser browser) {
+  public ApplicationManager(String browser) {
 
     this.browser = browser;
   }
 
   public void init() {
-    if (browser.equals(Browser.CHROME)) { wd = new ChromeDriver();}
-      else if (browser.equals(Browser.FIREFOX)) { wd = new FirefoxDriver();}
-      else if (browser.equals(Browser.SAFARI)) { wd = new SafariDriver();};
-    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+    if (browser.equals(Browser.CHROME.browserName())) { wd = new ChromeDriver();}
+      else if (browser.equals(Browser.FIREFOX.browserName())) { wd = new FirefoxDriver();}
+      else if (browser.equals(Browser.SAFARI.browserName())) { wd = new SafariDriver();};
+    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     wd.get("http://localhost/addressbook/index.php");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
