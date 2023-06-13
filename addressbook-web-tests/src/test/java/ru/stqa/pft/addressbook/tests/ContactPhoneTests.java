@@ -31,23 +31,10 @@ public class ContactPhoneTests extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     assertThat(contact.getAllPhones(),equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contact.getAllEmails(),equalTo(mergeEmails(contactInfoFromEditForm)));
+    assertThat(contact.getHomeAddress(), equalTo(cleanedAddress(contactInfoFromEditForm.getHomeAddress())));
 }
 
-  @Test
-  public void testContactEmails() throws Exception{
-    app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getAllEmails(),equalTo(mergeEmails(contactInfoFromEditForm)));
-  }
-
-  @Test
-  public void testContactAddress() throws Exception{
-    app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getHomeAddress(), equalTo(cleanedAddress(contactInfoFromEditForm.getHomeAddress())));
-  }
 
 
   private String mergePhones(ContactData contact) {
