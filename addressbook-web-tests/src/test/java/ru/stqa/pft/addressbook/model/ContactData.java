@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String firstName;
@@ -27,8 +29,15 @@ public class ContactData {
   private String secondaryAddressPhone;
   private String notes;
   private String allPhones;
-  public String allEmails;
+  private String allEmails;
+  private File photo;
 
+
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
 
   public ContactData withAllEmails(String allEmails) {
@@ -184,10 +193,14 @@ public class ContactData {
             '}';
   }
 
+  public File getPhoto() {
+    return photo;
+  }
 
   public String getAllEmails() {
     return allEmails;
   }
+
   public String getAllPhones() {
     return allPhones;
   }
