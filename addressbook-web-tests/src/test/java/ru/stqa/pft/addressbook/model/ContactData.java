@@ -4,46 +4,80 @@ import java.io.File;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
-
+@Entity
+@Table(name = "addressbook")
 @XStreamAlias("contact")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private String firstName;
+  @Column(name = "middlename")
   private String secondName;
   @Expose
+  @Column(name = "lastname")
   private String lastName;
+  @Column(name = "nickname")
   private String nickName;
+  @Column(name = "company")
   private String job;
   @Expose
+  @Column(name = "address")
   private String homeAddress;
   @Expose
+  @Column(name = "home", columnDefinition = "Text")
   private String homePhone;
   @Expose
+  @Column(name = "mobile", columnDefinition = "Text")
   private String mobilePhone;
   @Expose
+  @Column(name = "work", columnDefinition = "Text")
   private String workPhone;
+  @Column(name = "fax")
   private String faxPhone;
   @Expose
+  @Column(name = "email")
   private String mainEmail;
+  @Column(name = "email2")
   private String spareEmail1;
+  @Column(name = "email3")
   private String spareEmail2;
+  @Column(name = "homepage")
   private String websiteContact;
-  private String dayBirth;
-  private String monthBirth;
-  private String yearBirth;
-  private String dayAnniversary;
+  @XStreamOmitField
+  transient private String dayBirth;
+  @XStreamOmitField
+  transient private String monthBirth;
+  @XStreamOmitField
+  transient private String yearBirth;
+  @XStreamOmitField
+  transient private String dayAnniversary;
+  @XStreamOmitField transient
   private String monthAnniversary;
-  private String yearAnniversary;
+  @XStreamOmitField
+  transient private String yearAnniversary;
+  @Transient
   private String nameGroup;
+  @Column(name = "address2")
   private String secondaryAddress;
+  @Column(name = "phone2")
   private String secondaryAddressPhone;
+  @Column(name = "notes")
   private String notes;
+  @Transient
   private String allPhones;
+  @Transient
   private String allEmails;
-  private File photo;
+  @XStreamOmitField
+  transient private File photo;
+  @XStreamOmitField
+  transient private String deprecated;
 
 
 
