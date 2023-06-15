@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.model;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
@@ -57,12 +59,11 @@ public class ContactData {
   transient private String yearBirth;
   @XStreamOmitField
   transient private String dayAnniversary;
-  @XStreamOmitField transient
+  @XStreamOmitField
+  transient
   private String monthAnniversary;
   @XStreamOmitField
   transient private String yearAnniversary;
-  @Transient
-  private String nameGroup;
   @Column(name = "address2")
   private String secondaryAddress;
   @Column(name = "phone2")
@@ -73,18 +74,19 @@ public class ContactData {
   private String allPhones;
   @Transient
   private String allEmails;
+  @Transient
   @XStreamOmitField
   transient private File photo;
-  @XStreamOmitField
-  transient private String deprecated;
-
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
 
   public ContactData withPhoto(File photo) {
     this.photo = photo;
     return this;
   }
-
 
   public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
@@ -202,11 +204,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withNameGroup(String nameGroup) {
-    this.nameGroup = nameGroup;
-    return this;
-  }
-
   public ContactData withSecondaryAddress(String secondaryAddress) {
     this.secondaryAddress = secondaryAddress;
     return this;
@@ -222,6 +219,7 @@ public class ContactData {
     return this;
   }
 
+
   public int getId() {
     return id;
   }
@@ -230,14 +228,6 @@ public class ContactData {
     return firstName;
   }
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            '}';
-  }
 
   public File getPhoto() {
     return photo;
@@ -327,11 +317,6 @@ public class ContactData {
     return yearAnniversary;
   }
 
-  public String getNameGroup() {
-    return nameGroup;
-  }
-
-
   public String getSecondaryAddress() {
     return secondaryAddress;
   }
@@ -342,6 +327,15 @@ public class ContactData {
 
   public String getNotes() {
     return notes;
+  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 
 
@@ -371,5 +365,14 @@ public class ContactData {
     result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
     result = 31 * result + (mainEmail != null ? mainEmail.hashCode() : 0);
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
   }
 }

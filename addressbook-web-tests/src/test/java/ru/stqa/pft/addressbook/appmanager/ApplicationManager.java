@@ -39,7 +39,7 @@ public class ApplicationManager {
     if (browser.equals(Browser.CHROME.browserName())) { wd = new ChromeDriver();}
       else if (browser.equals(Browser.FIREFOX.browserName())) { wd = new FirefoxDriver();}
       else if (browser.equals(Browser.SAFARI.browserName())) { wd = new SafariDriver();};
-    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
     wd.get(properties.getProperty("web.baseUrl"));
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);

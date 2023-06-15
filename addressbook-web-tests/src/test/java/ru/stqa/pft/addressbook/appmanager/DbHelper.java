@@ -23,7 +23,7 @@ public class DbHelper {
     sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
   }
 
-  public Groups groups (){
+  public Groups groups() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GroupData> result = session.createQuery( "from GroupData" ).list();
@@ -32,7 +32,7 @@ public class DbHelper {
     return new Groups(result);
   }
 
-  public Contacts contacts (){
+  public Contacts contacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<ContactData> result = session.createQuery( "from ContactData" ).list();

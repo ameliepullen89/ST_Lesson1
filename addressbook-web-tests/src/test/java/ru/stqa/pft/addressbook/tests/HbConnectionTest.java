@@ -9,7 +9,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -26,8 +25,6 @@ public class HbConnectionTest {
     }
     catch (Exception e) {
       e.printStackTrace();
-      // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
-      // so destroy it manually.
       StandardServiceRegistryBuilder.destroy( registry );
     }
   }
@@ -36,10 +33,12 @@ public class HbConnectionTest {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<ContactData> result = session.createQuery( "from ContactData" ).list();
-    for ( ContactData contact : result ) {
-      System.out.println( contact );
-    }
     session.getTransaction().commit();
     session.close();
+
+    for ( ContactData contact : result ) {
+      System.out.println( contact );
+      System.out.println(contact.getGroups());
+    }
   }
 }
