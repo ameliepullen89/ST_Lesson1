@@ -354,7 +354,11 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+    if (homeAddress != null ? !homeAddress.equals(that.homeAddress) : that.homeAddress != null) return false;
+    if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
+    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
+    return mainEmail != null ? mainEmail.equals(that.mainEmail) : that.mainEmail == null;
   }
 
   @Override
@@ -362,9 +366,10 @@ public class ContactData {
     int result = id;
     result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (homeAddress != null ? homeAddress.hashCode() : 0);
+    result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
+    result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
+    result = 31 * result + (mainEmail != null ? mainEmail.hashCode() : 0);
     return result;
   }
-
-
-
 }
