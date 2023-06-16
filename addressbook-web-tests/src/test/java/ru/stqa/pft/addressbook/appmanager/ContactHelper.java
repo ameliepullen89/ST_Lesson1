@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -64,6 +66,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector(String.format("input[value='%s']", id))).click();
   }
 
+
   public void deleteSelectedContact() {
     click(By.xpath("//input[@value='Delete']"));
   }
@@ -94,7 +97,7 @@ public class ContactHelper extends HelperBase {
 
   public void modify(ContactData contact)  {
     initContactModificationById(contact.getId());
-    fillContactForm(contact, false);
+    fillContactForm(contact, true);
     submitContactModification();
     contactCache = null;
   }
@@ -151,4 +154,41 @@ public class ContactHelper extends HelperBase {
                     .withSpareEmail1(email2).withSpareEmail2(email3).withWorkPhone(workph);
   }
 
+  public void selectGroup(Contacts contactData) {
+    if (contactData.iterator().next().getGroups().size() > 1) {
+      Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
+      new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+    }
+  }
+
+  public void selectGroup(GroupData group) {
+    wd.findElement(By.xpath(String.format("//select[@name='to_group']/option[@value='%s']", group.getId()))).click();
+  }
+
+  public void selectContactWithoutGroup(ContactData contact) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
+    click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
+  }
+
+  public void selectContact(ContactData contact) {
+    click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
+  }
+
+  public void removeContactFromGroup() {
+    click(By.name("remove"));
+    contactCache = null;
+  }
+
+  public void getGroupData(GroupData groupData) {
+    click(By.xpath(String.format("//select[@name='group']/option[text() = '%s']", groupData.getName())));;
+  }
+
+
+  public void addContactToGroup() {
+    click(By.name("add"));
+    contactCache = null;
+  }
+
 }
+
+
