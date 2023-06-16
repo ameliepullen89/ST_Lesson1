@@ -18,7 +18,7 @@ public class AddContactToGroupTests extends TestBase {
 
     if (app.db().contacts().size() == 0) { //Проверка наличия контактов
       app.goTo().createContactPage();
-      app.contact().create(new ContactData().withFirstName("Sherlock").withLastName("Holmes").withHomeAddress("10-11 Northumberland Street, Westminster, London WC2N 5DB"));
+      app.contact().create(new ContactData().withFirstName("Sherlock").withLastName("Holmes").withHomeAddress("10-11 Northumberland Street, Westminster, London WC2N 5DB"),true);
       app.goTo().homePage();
     }
 
@@ -29,9 +29,9 @@ public class AddContactToGroupTests extends TestBase {
     }
 
 
-    if (app.db().contactWithoutGroups().size() == 0) { //Проверка наличия контакта без привязки к группе
-      app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstName("Molly").withLastName("Holmes").withHomeAddress("London WC2N 5DB"));
+    if (app.db().contactWithoutGroups() == null) { //Проверка наличия контакта без привязки к группе
+      app.goTo().createContactPage();
+      app.contact().create(new ContactData().withFirstName("Molly").withLastName("Holmes").withHomeAddress("London WC2N 5DB"), true);
     }
   }
 
@@ -39,7 +39,7 @@ public class AddContactToGroupTests extends TestBase {
 
   @Test
   public void testAddContactToGroup(){
-    ContactData before = app.db().contactWithoutGroup();
+    ContactData before = app.db().contactWithoutGroups();
     Groups groups = app.db().groups();
     GroupData group = groups.iterator().next();
     app.goTo().homePage();

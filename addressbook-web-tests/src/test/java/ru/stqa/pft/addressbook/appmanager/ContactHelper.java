@@ -53,8 +53,7 @@ public class ContactHelper extends HelperBase {
     }
     else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
-    ;
+    };
     type(By.name("address2"), contactData.getSecondaryAddress());
     type(By.name("phone2"), contactData.getSecondaryAddressPhone());
     type(By.name("notes"), contactData.getNotes());
@@ -88,7 +87,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void create(ContactData contact) {
+  public void create(ContactData contact, boolean creation) {
     fillContactForm(contact, true);
     submitContactCreation();
     contactCache = null;

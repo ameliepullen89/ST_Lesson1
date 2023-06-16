@@ -15,17 +15,17 @@ public class DbHelper {
 
   private final SessionFactory sessionFactory;
 
-  public DbHelper (){
+  public DbHelper() {
     final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure()
             .build();
-    sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+    sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }
 
   public Groups groups() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<GroupData> result = session.createQuery( "from GroupData" ).list();
+    List<GroupData> result = session.createQuery("from GroupData").list();
     session.getTransaction().commit();
     session.close();
     return new Groups(result);
@@ -34,7 +34,7 @@ public class DbHelper {
   public Contacts contacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery( "from ContactData" ).list();
+    List<ContactData> result = session.createQuery("from ContactData").list();
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
@@ -49,40 +49,61 @@ public class DbHelper {
     return result.iterator().next();
   }
 
-  public Contacts contactWithoutGroups() {
+  public ContactData contactWithoutGroups() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery( "from ContactData where groups.size = 0" ).list();
+    List<ContactData> result = session.createQuery("from ContactData").list();
     session.getTransaction().commit();
     session.close();
-    return new Contacts(result);
+    for (ContactData contactData : result) {
+      if (contactData.getGroups().size() == 0) {
+        return contactData;
+      }
+    }
+    return null;
+
   }
 
-  public Contacts contactWithGroups (){
+  public ContactData contactWithGroups() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery( "from ContactData where groups.size > 0" ).list();
+    List<ContactData> result = session.createQuery("from ContactData").list();
     session.getTransaction().commit();
     session.close();
-    return new Contacts(result);
+    for (ContactData contactData : result) {
+      if (contactData.getGroups().size() != 0) {
+        return contactData;
+      }
+    }
+    return null;
   }
 
-  public ContactData contactWithoutGroup() {
+ /* public ContactData contactWithoutGroup() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery("from ContactData where groups.size = 0").list();
+    List<ContactData> result = session.createQuery( "from ContactData" ).list();
     session.getTransaction().commit();
     session.close();
-    return result.iterator().next();
+    for (ContactData contactData: result) {
+      if (contactData.getGroups().size()!=0) {
+        return contactData;
+      }
+    }
+    return null;
   }
 
   public ContactData contactWithGroup() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery("from ContactData where groups.size > 0").list();
+    List<ContactData> result = session.createQuery( "from ContactData" ).list();
     session.getTransaction().commit();
     session.close();
-    return result.iterator().next();
-  }
+    for (ContactData contactData: result) {
+      if (contactData.getGroups().size() != 0) {
+        return contactData;
+      }
+    }
+    return null;
 
+}*/
 }
